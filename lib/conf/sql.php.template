@@ -1,0 +1,7 @@
+<?php
+
+$sql_server = "";						// fill this in acording to your server info
+$sql_user = "";
+$sql_password = "";
+$sql_database = "";
+$sql_min_priv_for_debug = 2;

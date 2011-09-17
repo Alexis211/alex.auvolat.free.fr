@@ -1,0 +1,11 @@
+Hi.
+
+This is the source code of the website at http://alex.auvolat.free.fr/
+
+To set it up on your own server :
+
+- Copy the files in this repository somewhere on your server
+- Copy lib/conf/sql.php.template to lib/conf/sql.php and edit to your needs
+- Execute the contents of schema.sql on your mysql database
+- Make sure you have an images/ directory and that your server can write in it.
+- (Create an admin account in the database)

@@ -1,0 +1,32 @@
+<?php
+
+$title = "Register";
+
+$login = "";
+if (isset($_POST['login']) && isset($_POST['pw1']) && isset($_POST['pw2'])) {
+	$login = esca($_POST["login"]);
+	$pw1 = esc($_POST["pw1"]);
+	$pw2 = esc($_POST["pw2"]);
+	if ($login == "") {
+		$error = "You must enter a username.";
+	} else if ($pw1 != $pw2) {
+		$error = "You must enter twice the same password.";
+	} else if ($pw1 == "") {
+		$error = "You must enter a password";
+	} else {
+		sql("INSERT INTO account(login, password) VALUES('" . escs($login) . "', PASSWORD('$pw1'))");
+		$message = "Your account has been created. Please log in now.";
+		$url = $homepage;
+		require("tpl/account/login.php");
+	}
+}
+
+$form_message = "Please fill in the following form to create an account :";
+$fields = array(
+	array("label" => "Username : ", "name" => "login", "value" => $login),
+	array("label" => "Password : ", "name" => "pw1", "type" => "password"),
+	array("label" => "Confirm password : ", "name" => "pw2", "type" => "password")
+	);
+$validate = "Create an account";
+
+require("tpl/general/form.php");

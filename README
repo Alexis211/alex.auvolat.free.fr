@@ -9,3 +9,12 @@ To set it up on your own server :
 - Execute the contents of schema.sql on your mysql database
 - Make sure you have an images/ directory and that your server can write in it.
 - (Create an admin account in the database)
+
+
+COPYING :
+All the source code here is available under public domain. You are free to do
+whatever you wish with it : copy, edit, sell, use, and anything else, with
+absolutely no condition.
+WARRANTY :
+This software might eat your hamster. It will more likely break your computer.
+It's even more likely it will be totally useless to you.

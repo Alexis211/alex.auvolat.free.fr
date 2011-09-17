@@ -15,6 +15,8 @@ COPYING :
 All the source code here is available under public domain. You are free to do
 whatever you wish with it : copy, edit, sell, use, and anything else, with
 absolutely no condition.
+The only exception to this is the lib/markdown.php file, which belongs to the
+PHP markdown project and must be used while followint their terms of use.
 WARRANTY :
 This software might eat your hamster. It will more likely break your computer.
 It's even more likely it will be totally useless to you.

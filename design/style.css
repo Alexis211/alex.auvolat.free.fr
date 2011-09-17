@@ -54,6 +54,8 @@ h1 {
 	.menu a {
 		min-width: 100px;
 		padding: 4px;
+		padding-left: 20px;
+		padding-right: 20px;
 	}
 }
 
@@ -125,7 +127,7 @@ iframe, textarea {
 	iframe, textarea {
 	  border: 1px solid gray;
 	  width: 98%;
-	  height: 400px;
+	  height: 300px;
 	}
 
 	textarea {
@@ -177,6 +179,13 @@ iframe, textarea {
 	font-style: italic;
 }
 
+.ordering_links {
+	font-size: 0.8em;
+	margin-top: 10px;
+	margin-left: 50px;
+	color: #444;
+}
+
 table {
 	margin: 8px;
 	width: 99%;
@@ -199,6 +208,25 @@ th {
 	text-align: center;
 }
 
+code {
+	font-size: 1.2em;
+}
+
 abbr {
 	border-bottom: 1px dashed #999;
+}
+
+
+/* CARDS */
+
+.study_card {
+	margin: 16px;
+	border-left: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	padding: 8px;
+}
+
+.study_card code {
+	margin-left: 16px;
+	margin-bottom: 8px;
 }

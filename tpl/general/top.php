@@ -24,9 +24,12 @@ if ($user['id'] == 0) {
 				<a href="notes">Notebooks</a>
 			<?php
 if ($user['id'] != 0) {
-	echo '<a href="image">Uploaded images</a>';
-} elseif ($user['priv'] >= $apps['image']['upload']) {
-	echo '<a href="upload-image">Upload image</a>';
+	echo '<a href="image">Uploaded images</a><a href="study">My studies</a>';
+} else {
+	if ($user['priv'] >= $apps['image']['upload']) {
+		echo '<a href="upload-image">Upload image</a>';
+	}
+	echo '<a href="deck">Study decks</a>';
 }
 ?>
 			</div>

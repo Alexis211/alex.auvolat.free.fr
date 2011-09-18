@@ -31,4 +31,12 @@ while ($nn = mysql_fetch_assoc($n)) $cards[] = $nn;
 $can_edit = false;
 if ($deck["owner_id"] == $user['id']) $can_edit = true;
 
+$can_start_study = false;
+if ($user['id'] != 0) {
+	if (!mysql_fetch_assoc(sql("SELECT id FROM deck_study WHERE deck = $deckid AND user = " . $user['id'])))
+		$can_start_study = true;
+} else {
+	$message = "You should create an account in order to study this deck.";
+}
+
 require("tpl/deck/view.php");

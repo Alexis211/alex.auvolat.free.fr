@@ -26,6 +26,7 @@ if ($pos > $mn) {
 	sql("UPDATE cards SET number = number - 1 WHERE number > " . $card['number']);
 	sql("UPDATE cards SET number = number + 1 WHERE number >= $pos");
 	sql("UPDATE cards SET number = $pos WHERE id = $cardid");
+	sql("UPDATE deck_study SET need_check = 1 WHERE deck = $deckid");
 	header("Location: view-deck-$deckid");
 }
 

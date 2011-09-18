@@ -44,6 +44,9 @@ $apps = array(
 		"index" => 1,
 		"deckadd" => 1,
 		"deck" => 1,
+		"deckrm" => 1,
+		"setrate" => 1,
+		"setcard" => 1,
 	),
 
 );

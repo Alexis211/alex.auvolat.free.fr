@@ -9,10 +9,12 @@ if ($can_edit) {
 	echo '<a href="addent-deck-' . $deck['id'] . '">add card</a></div>';
 }
 
-echo '<h3>Description</h3>';
 echo $deck["comment"];
 
-echo '<h3>Cards</h3>';
+if ($can_start_study) {
+	echo '<p style="text-align: center; font-size: 1.2em;"><a href="deckadd-study-' . $deckid . '">&gt;&gt; start studying this deck &lt;&lt;</a></p>';
+}
+
 echo '<div class="ordering_links">' . filters_html_full() . '</div>';
 foreach ($cards as $card) {
 	echo '<div class="study_card">';
@@ -22,7 +24,7 @@ foreach ($cards as $card) {
 		echo '</div>';
 	}
 	echo '<code>#' . $card["number"] . ": " . $card["name"] . '</code>';
-	echo '<br />' . $card['text'];
+	echo $card['text'];
 	echo '</div>';
 }
 if ($can_edit)

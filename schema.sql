@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le : Sam 17 Septembre 2011 à 19:36
+-- Généré le : Dim 18 Septembre 2011 à 12:06
 -- Version du serveur: 5.5.15
 -- Version de PHP: 5.3.8
 
@@ -50,8 +50,25 @@ CREATE TABLE IF NOT EXISTS `cards` (
   `text_html` text NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_name` (`deck`,`name`),
-  UNIQUE KEY `unique_number` (`deck`,`number`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+  UNIQUE KEY `unique_number` (`deck`,`number`),
+  KEY `deck_idx` (`deck`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `card_study`
+--
+
+CREATE TABLE IF NOT EXISTS `card_study` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `deck_study` int(11) NOT NULL,
+  `card` int(11) NOT NULL,
+  `level` int(11) NOT NULL,
+  `next_review` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `deck_study` (`deck_study`,`card`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 -- --------------------------------------------------------
 
@@ -66,8 +83,28 @@ CREATE TABLE IF NOT EXISTS `decks` (
   `comment_md` text NOT NULL,
   `comment_html` text NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_name` (`owner`,`name`)
+  UNIQUE KEY `unique_name` (`owner`,`name`),
+  KEY `owner_idx` (`owner`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `deck_study`
+--
+
+CREATE TABLE IF NOT EXISTS `deck_study` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` int(11) NOT NULL,
+  `deck` int(11) NOT NULL,
+  `last_card` int(11) NOT NULL DEFAULT '0',
+  `learn_rate` int(11) NOT NULL DEFAULT '10',
+  `need_check` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_user_deck` (`user`,`deck`),
+  KEY `user_idx` (`user`),
+  KEY `deck_idx` (`deck`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 -- --------------------------------------------------------
 
@@ -81,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `images` (
   `extension` varchar(5) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `owner` (`owner`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 -- --------------------------------------------------------
 

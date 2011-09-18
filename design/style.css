@@ -224,9 +224,36 @@ abbr {
 	border-left: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
 	padding: 8px;
+	background: #F7F7F7;
 }
 
 .study_card code {
 	margin-left: 16px;
 	margin-bottom: 8px;
+	display: block;
+}
+
+.scb1 {
+	border-left: 1px solid #DD00DD;
+	border-bottom: 1px solid #DD00DD;
+}
+
+.scb2 {
+	border-left: 1px solid #FF7777;
+	border-bottom: 1px solid #FF7777;
+}
+
+.scb3 {
+	border-left: 1px solid #FFAA00;
+	border-bottom: 1px solid #FFAA00;
+}
+
+.scb4, .scb5, .scb6 {
+	border-left: 1px solid #00CC00;
+	border-bottom: 1px solid #00CC00;
+}
+
+.scb7 {
+	border-left: 1px solid #0000FF;
+	border-bottom: 1px solid #0000FF;
 }

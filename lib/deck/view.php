@@ -9,6 +9,9 @@ $deck = mysql_fetch_assoc(sql(
 	"WHERE decks.id = $deckid"));
 assert_error($deck, "This deck does not exist.");
 
+$can_edit = false;
+if ($deck["owner_id"] == $user['id']) $can_edit = true;
+
 $filters = array (
 	"order" => array (
 		"name" => "card name",
@@ -18,7 +21,7 @@ $filters = array (
 );
 $fdefaults = array (
 	"order" => "number",
-	"way" => "ASC",
+	"way" => ($can_edit ? "DESC" : "ASC"),
 );
 
 $cards = array();
@@ -27,9 +30,6 @@ $n = sql(
 		"ORDER BY " . get_filter("order") . " " . get_filter("way")
 	);
 while ($nn = mysql_fetch_assoc($n)) $cards[] = $nn;
-
-$can_edit = false;
-if ($deck["owner_id"] == $user['id']) $can_edit = true;
 
 $can_start_study = false;
 if ($user['id'] != 0) {

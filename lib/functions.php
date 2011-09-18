@@ -89,22 +89,13 @@ function filter_html($name) {
 	return implode(", ", $r);
 }
 
-function filters_html() {
-	global $filters;
-	$r = array();
-	foreach ($filters as $k => $filter) {
-		$r[$k] = filter_html($k);
-	}
-	return $r;
-}
-
 function filters_html_full() {
-	global $filters_names;
-	$r = array();
-	foreach (filters_html() as $f => $h) {
-		$r[] = $f . " (" . $h . ")";
+	global $filters;
+	$ra = array();
+	foreach (array_keys($filters) as $k) {
+		$ra[] = $k . " (" . filter_html($k) . ")";
 	} 
-	return implode(", ", $r);
+	return implode(", ", $ra);
 }
 
 $ord_ways = array (

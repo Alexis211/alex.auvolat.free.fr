@@ -23,8 +23,8 @@ if ($pos > $mn) {
 	$error = "A position is at least one...";
 } else {
 	sql("UPDATE cards SET number = 0 WHERE id = $cardid");
-	sql("UPDATE cards SET number = number - 1 WHERE number > " . $card['number']);
-	sql("UPDATE cards SET number = number + 1 WHERE number >= $pos");
+	sql("UPDATE cards SET number = number - 1 WHERE number > " . $card['number'] . " AND deck = $deckid ORDER BY number ASC");
+	sql("UPDATE cards SET number = number + 1 WHERE number >= $pos AND deck = $deckid ORDER BY number DESC");
 	sql("UPDATE cards SET number = $pos WHERE id = $cardid");
 	sql("UPDATE deck_study SET need_check = 1 WHERE deck = $deckid");
 	header("Location: view-deck-$deckid");

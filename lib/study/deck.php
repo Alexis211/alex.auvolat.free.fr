@@ -80,7 +80,7 @@ $s = sql(
 	"SELECT cards.id AS id, cards.name AS name, cards.text_html AS text, cards.number AS number, ".
 	"card_study.level AS level, card_study.next_review <= CURDATE() AS must_study ".
 	"FROM card_study LEFT JOIN cards ON card_study.card = cards.id WHERE deck_study = $studyid AND " . get_filter("what") .
-	" ORDER BY " . get_filter("order") . " " . get_filter('way'));
+	" ORDER BY " . get_filter("order") . " " . get_filter('way') . (get_filter("order") == "level" ? ", number " . get_filter("way") : ""));
 while ($ss = mysql_fetch_assoc($s)) $study_cards[] = $ss;
 
 

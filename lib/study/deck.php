@@ -12,10 +12,18 @@ assert_error($study && $study['learn_user'] == $user['id'], "You are not at the 
 
 if ($study['need_check']) {
 	/* Algorithm :
+	   - Delete references to deleted cards
 	   - Check that deck_study.last_card = max(card_study.card.number)
 	   - Check that foreach (card where card.deck = deck_study.deck && card.number < deck_study.last_card), 
 	   			exists corresponding card_study, if not exist, create level 0 (skipped)
 	*/
+	$n = sql("SELECT card_study.id AS id, cards.deck AS d FROM card_study ".
+		"LEFT JOIN cards ON cards.id = card_study.card WHERE card_study.deck_study = $studyid");
+	while ($r = mysql_fetch_assoc($n)) {
+		if (intval($r['d']) == 0) {
+			sql("DELETE FROM card_study WHERE id = " . $r['id']);
+		}
+	}
 	$mcn = mysql_fetch_assoc(sql("SELECT MAX(cards.number) AS mcn FROM deck_study ".
 		"LEFT JOIN card_study ON card_study.deck_study = deck_study.id LEFT JOIN cards ON cards.id = card_study.card ".
 		"WHERE deck_study.id = $studyid"));

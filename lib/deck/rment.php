@@ -14,7 +14,7 @@ assert_error($card && $card["deckowner"] == $user['id'],
 
 token_validate("Do you really want to delete this card ?", "view-deck-". $card['deckid']);
 sql("DELETE FROM cards WHERE id = $cardid");
-sql("UPDATE cards SET number = number - 1 WHERE number > " . $card['number'] . " AND deck = " . $card['deckid']);
+sql("UPDATE cards SET number = number - 1 WHERE number > " . $card['number'] . " AND deck = " . $card['deckid'] . " ORDER BY number ASC");
 sql("UPDATE deck_study SET need_check = 1 WHERE deck = " . $card['deckid']);
 header("Location: view-deck-" . $card['deckid']);
 die();

@@ -3,7 +3,7 @@
 $title = "Studying " . $study['deckowner'] . ':' . $study['deckname'];
 require("tpl/general/top.php");
 
-echo '<div class="small_right"><a href="deckrm-study-' . $studyid . '">stop studying</a></div>';
+echo '<div class="small_right"><a href="deckrm-study-' . $studyid . '">stop studying</a> | <a href="view-deck-' . $study['deckid'] . '">view whole deck</a></div>';
 
 echo '<div style="margin-top: 20px;text-align: center; font-size: 1.2em;">';
 echo 'Load : ' . $load . '/' . $study['learn_rate'] . ' - <a href="setrate-study-' . $studyid . '">change study rate</a></div>';

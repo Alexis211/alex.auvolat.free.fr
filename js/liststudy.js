@@ -59,7 +59,10 @@ function show_contents_table() {
 		}
 		html += '<td>' + items[i].win + '</td>';
 		html += '<td' + (items[i].fail > 0 ? (items[i].fail > items[i].win ? ' style="background-color: #ff7777"' : ' style="background-color: #FFFF00"') : '') + '>' + items[i].fail + '</td>';
-		html += '<td style="background-color: ' + (items[i].score == max_score ? '#00aa00' : (items[i].score > med_score ? '#55FF55' : '#FFFF00')) + '">' + items[i].score + '</td></tr>';
+		html += '<td style="background-color: ' + 
+			(items[i].score == max_score ? '#00aa00' : 
+			(items[i].score > med_score ? '#55FF55' : 
+			(items[i].score < 0 ? '#FF7777' : '#FFFF00'))) + '">' + items[i].score + '</td></tr>';
 	}
 	html += '</table>';
 	html += '<p>Medium score : ' + med_score + '</p>';

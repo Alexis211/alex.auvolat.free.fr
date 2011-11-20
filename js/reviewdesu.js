@@ -48,7 +48,7 @@ function prepare_questions() {
 
 function next_question() {
 	if (questions.length == 0) {
-		score = Math.ceil(score * 50 / total);
+		score = Math.ceil(score * 100 / total);
 		$("core").innerHTML = '<p>Finished. Score : ' + score + '/100. Saving data...</p>';
 		new Ajax.Request('index.php?p=brresults-study-' + batchid, {
 			method: 'post',
@@ -86,6 +86,6 @@ function show_answer() {
 
 function answer_question(a) {
 	results.push([question.key, a]);
-	score += (a+1);
+	score += a;
 	next_question();
 }

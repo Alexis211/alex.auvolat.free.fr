@@ -5,6 +5,9 @@
 
 var items = [];
 
+var max_score = 0;
+var med_score = 0;
+
 function show_batch_table() {
 	process_items();
 	show_contents_table();
@@ -35,6 +38,11 @@ function process_items() {
 			}
 		}
 	}
+	for (var i = 0; i < items.length; i++) {
+		if (items[i].score > max_score) max_score = items[i].score;
+		med_score += items[i].score;
+	}
+	med_score = Math.ceil(med_score * 10 / items.length) / 10;
 }
 
 function show_contents_table() {
@@ -49,9 +57,12 @@ function show_contents_table() {
 		for (var j = 0; j < items[i].info.length; j++) {
 			html += '<td><span class="cd' + j + '">' + items[i].info[j] + '</span></td>';
 		}
-		html += '<td>' + items[i].win + '</td><td>' + items[i].fail + '</td><td>' + items[i].score + '</td></tr>';
+		html += '<td>' + items[i].win + '</td>';
+		html += '<td' + (items[i].fail > 0 ? (items[i].fail > items[i].win ? ' style="background-color: #ff7777"' : ' style="background-color: #FFFF00"') : '') + '>' + items[i].fail + '</td>';
+		html += '<td style="background-color: ' + (items[i].score == max_score ? '#00aa00' : (items[i].score > med_score ? '#55FF55' : '#FFFF00')) + '">' + items[i].score + '</td></tr>';
 	}
 	html += '</table>';
+	html += '<p>Medium score : ' + med_score + '</p>';
 	$("items").innerHTML = html;
 }
 
@@ -76,7 +87,7 @@ function show_reviews_table() {
 		for (var i = 0; i < reviews_data.length; i++) {
 			var color = '';
 			if (reviews_data[i].score == 100)
-				color = '#00CC00';
+				color = '#00aa00';
 			else if (reviews_data[i].score >= 90)
 				color = '#55FF55';
 			else if (reviews_data[i].score >= 50)

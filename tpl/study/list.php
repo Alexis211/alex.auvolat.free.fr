@@ -12,7 +12,7 @@ foreach ($batches as $batch) {
 	$color = "";
 	if ($batch['lr_date']) {
 		if ($batch['lr_score'] == 100)
-			$color = "#00CC00";
+			$color = "#00AA00";
 		else if ($batch['lr_score'] >= 90)
 			$color = "#55FF55";
 		else if ($batch['lr_score'] >= 50)

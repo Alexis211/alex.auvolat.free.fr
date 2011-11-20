@@ -32,7 +32,7 @@ if (isset($_POST['name']) && isset($_POST['comment'])) {
 	}
 }
 
-$title = "Edit : " . $deck['name'];
+$title = "Edit deck : " . $deck['name'];
 $fields = array(
 	array("label" => "Name : ", "name" => "name", "value" => $deck_name),
 	array("label" => "Comment : ", "name" => "comment", "type" => "textarea", "value" => $deck_comment),

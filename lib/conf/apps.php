@@ -40,6 +40,17 @@ $apps = array(
 		"edent" => 1,		// edit card
 		"mvent" => 1,		// move card
 	),
+	"list" => array(
+		"index" => 0,
+		"view" => 0,
+		"new" => 1,
+		"edit" => 1,		// edit global info = name, desc, ...
+
+		"addbatch" => 1,
+		"edbatch" => 1,
+		"rmbatch" => 1,
+	),
+
 	"study" => array (
 		"index" => 1,
 		"deckadd" => 1,
@@ -47,6 +58,13 @@ $apps = array(
 		"deckrm" => 1,
 		"setrate" => 1,
 		"setcard" => 1,
+
+		"listadd" => 1,		// create list_study
+		"list" => 1,		// !!!!!! show global progress for a list_study
+		"listrm" => 1,		// delete list_study
+		"batch" => 1,		// (JS) shows progress for a batch_study
+		"batchreview" => 1,	// (JS) batch review app
+		"brresults" => 1,
 	),
 
 );

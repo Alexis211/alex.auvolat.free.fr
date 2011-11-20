@@ -7,9 +7,17 @@ global $user, $apps;	//These might be hidden because this page is called from sq
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<title><?php echo $title; ?></title>
 		<link href="design/style.css" rel="stylesheet" type="text/css" media="screen" />
+		<?php
+		if (isset($js_include)) {
+			foreach($js_include as $e) {
+				echo '<script type="text/javascript" src="' . $e . '"></script>';
+			}
+		}
+		if (isset($javascript)) echo '<script type="text/javascript">' . $javascript . '</script>';
+		?>
 	</head>
 
-	<body>
+	<body<?php if (isset($onload_js)) echo ' onload="' . $onload_js . '"'; ?>>
 		<div class="menu">
 			<div class="right">
 			<?php
@@ -30,6 +38,7 @@ if ($user['id'] != 0) {
 		echo '<a href="upload-image">Upload image</a>';
 	}
 	echo '<a href="deck">Study decks</a>';
+	echo '<a href="list">Study lists</a>';
 }
 ?>
 			</div>

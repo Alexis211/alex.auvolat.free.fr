@@ -5,7 +5,10 @@ require("tpl/general/top.php");
 
 ?>
 
-<p>Welcome to the <em>My studies</em> section. This is a simple study program based on
+<p>Welcome to the <em>My studies</em> section. This is a simple study program, with two methods of studying available.</p>
+
+<h3>First method : cards</h3>
+<p>The first method is based on
 decks of cards, keeping track of your progress and everything.</p>
 
 <p>Please take a look in the <a href="deck">List of decks</a> and start learning whatever you want to learn.</p>
@@ -25,6 +28,11 @@ Cards you are supposed to study or review today appear with a bold title : that 
 <p>The <em>load</em> is calculated as a function of the number of cards with levels from 1 to 3 : it represents the quantity of
   stuff you are <em>learning</em> right now. When the load is smaller than the study rate you ask for, new cards will be suggested for
   you to learn.</p>
+
+<h3>Second method : study lists</h3>
+<p>In this method, we have lists of stuff to learn (like vocabulary), divided into batches (the batches are sorted
+for a given list). You will study one batch at a time, and take a test for one batch at a time. All your test results
+	are kept in storage and are used to display your progress.</p>
 
 <?php
 

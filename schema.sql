@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.5
+-- version 3.4.7.1
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le : Dim 18 Septembre 2011 à 12:06
--- Version du serveur: 5.5.15
+-- Généré le : Dim 20 Novembre 2011 à 13:31
+-- Version du serveur: 5.5.17
 -- Version de PHP: 5.3.8
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -38,6 +38,58 @@ CREATE TABLE IF NOT EXISTS `account` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `batches`
+--
+
+CREATE TABLE IF NOT EXISTS `batches` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `list` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `model` text NOT NULL,
+  `contents` text NOT NULL,
+  `json_data` text NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_name` (`list`,`name`),
+  KEY `list` (`list`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `batch_review`
+--
+
+CREATE TABLE IF NOT EXISTS `batch_review` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` int(11) NOT NULL,
+  `batch` int(11) NOT NULL,
+  `results` text NOT NULL,
+  `score` int(11) NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `batch` (`batch`),
+  KEY `user_idx` (`user`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `batch_study`
+--
+
+CREATE TABLE IF NOT EXISTS `batch_study` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` int(11) NOT NULL,
+  `batch` int(11) NOT NULL,
+  `last_review` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `batch` (`batch`),
+  KEY `user_idx` (`user`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `cards`
 --
 
@@ -52,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `cards` (
   UNIQUE KEY `unique_name` (`deck`,`name`),
   UNIQUE KEY `unique_number` (`deck`,`number`),
   KEY `deck_idx` (`deck`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 -- --------------------------------------------------------
 
@@ -68,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `card_study` (
   `next_review` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `deck_study` (`deck_study`,`card`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 -- --------------------------------------------------------
 
@@ -85,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `decks` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_name` (`owner`,`name`),
   KEY `owner_idx` (`owner`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -123,6 +175,39 @@ CREATE TABLE IF NOT EXISTS `images` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `lists`
+--
+
+CREATE TABLE IF NOT EXISTS `lists` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `owner` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `comment_md` text NOT NULL,
+  `comment_html` text NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_name` (`owner`,`name`),
+  KEY `owner` (`owner`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `list_study`
+--
+
+CREATE TABLE IF NOT EXISTS `list_study` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` int(11) NOT NULL,
+  `list` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_user_list` (`user`,`list`),
+  KEY `user` (`user`),
+  KEY `list_idx` (`list`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `notes`
 --
 
@@ -137,3 +222,7 @@ CREATE TABLE IF NOT EXISTS `notes` (
   PRIMARY KEY (`id`),
   KEY `owner` (`owner`,`parent`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=34 ;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

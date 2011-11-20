@@ -22,7 +22,7 @@ while ($nn = mysql_fetch_assoc($n)) $batches[] = $nn;
 
 $can_start_study = false;
 if ($user['id'] != 0) {
-	if (!mysql_fetch_assoc(sql("SELECT id FROM list_study WHERE list = $listid AND user = " . $user['id'])));
+	if (!mysql_fetch_assoc(sql("SELECT id FROM list_study WHERE list = $listid AND user = " . $user['id'])))
 		$can_start_study = true;
 } else {
 	$message = "You should create an account in order to study this list.";

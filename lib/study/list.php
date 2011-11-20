@@ -13,7 +13,8 @@ assert_error($study && $study['learn_user'] == $user['id'], "You are not at the 
 $filters = array(
 	"order" => array(
 		"name" => "name",
-		"lr_score" => "last score"
+		"lr_score" => "last score",
+		"lr_date" => "last reviewed"
 	),
 	"way" => $ord_ways,
 );

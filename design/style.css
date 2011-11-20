@@ -1,5 +1,5 @@
 body {
-  background: #eeeeee;
+  background: #FBFBFB;
   padding: 0px;
   margin: 0px;
   width: 400px;
@@ -28,8 +28,8 @@ h1 {
 .menu {
   padding: 4px;
   margin-bottom: 8px;
-  background: #ddd;
-  border-bottom: 1px solid #ccc;
+  background: #F5F5F5;
+  border-bottom: 1px solid #F0F0F0;
 }
 
 .menu .right {
@@ -70,7 +70,7 @@ h1 {
 		left: 0px;
 		bottom: 16px;
 		width: 300px;
-		border-right: 1px solid #ccc;
+		border-right: 1px solid #ddd;
 		overflow: auto;
 		padding: 16px;
 	}
@@ -109,7 +109,7 @@ iframe, textarea {
 	form {
 	  padding-left: 8px;
 	  padding-bottom: 8px;
-	  border: 1px solid #ccc;
+	  border: 1px solid #DDD;
 	  border-top: 0px;
 	  border-right: 0px;
 	  margin-top: 16px;
@@ -125,7 +125,7 @@ iframe, textarea {
 	}
 
 	iframe, textarea {
-	  border: 1px solid gray;
+	  border: 1px solid #CCC;
 	  width: 98%;
 	  height: 300px;
 	}
@@ -139,18 +139,18 @@ iframe, textarea {
   margin-top: 8px;
   margin-bottom: 8px;
   padding: 8px;
-  border: 1px solid red;
-  color: red;
-  background-color: #FCC;
+  border: 1px solid #FBB;
+  color: #A22;
+  background-color: #FFE0FF;
 }
 
 .message {
   margin-top: 8px;
   margin-bottom: 8px;
   padding: 8px;
-  border: 1px solid green;
-  background-color: #CFC;
-  color: green;
+  border: 1px solid #CFC;
+  background-color: #E7FFE7;
+  color: #2A2;
 }
 
 .tree_branch {
@@ -193,17 +193,17 @@ table {
 }
 
 td, th {
-	border: 1px solid #bbb;
+	border: 1px solid #E0E0E0;
 }
 
 td {
-	background-color: #eee;
+	background-color: #F7F7F7;
 	padding: 6px;
 	vertical-align: top;
 }
 
 th {
-	background-color: #ddd;
+	background-color: #E7E7E7;
 	padding: 2px;
 	text-align: center;
 }
@@ -214,6 +214,11 @@ code {
 
 abbr {
 	border-bottom: 1px dashed #999;
+}
+
+hr {
+	border: 0px;
+	border-bottom: 1px dashed #AAA;
 }
 
 

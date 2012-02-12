@@ -11,7 +11,7 @@ require("tpl/general/top.php");
 <p>The first method is based on
 decks of cards, keeping track of your progress and everything.</p>
 
-<p>Please take a look in the <a href="deck">List of decks</a> and start learning whatever you want to learn.</p>
+<p>Please take a look at the <a href="deck">list of decks</a> and start learning whatever you want to learn.</p>
 
 <p>The cards you are studying are classified in the following <em>boxes</em> :</p>
 <ul>
@@ -33,6 +33,8 @@ Cards you are supposed to study or review today appear with a bold title : that 
 <p>In this method, we have lists of stuff to learn (like vocabulary), divided into batches (the batches are sorted
 for a given list). You will study one batch at a time, and take a test for one batch at a time. All your test results
 	are kept in storage and are used to display your progress.</p>
+
+<p>Please take a look at the <a href="list">list of lists</a> and start learning whatever you want to learn.</p>
 
 <?php
 

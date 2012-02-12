@@ -1,6 +1,6 @@
 <?php
 
-$homepage = "notes";
+$homepage = "blog";
 
 $apps = array(
 	
@@ -8,17 +8,19 @@ $apps = array(
 	"image" => array(
 		"index" => 1,
 		"delete" => 1,
+		"rename" => 1,
 		"upload" => 0,
 	),
 
 	// Account application
 	"account" => array(
 		"new" => 0,
+		"list" => 0,
 	),
 
 	// Notebook application
 	"notes" => array(
-		"index" => 0,
+		//"index" => 0,
 		"user" => 0,
 		"view" => 0,
 		"new" => 1,
@@ -26,6 +28,16 @@ $apps = array(
 		"delete" => 1,
 		"move" => 1,
 		"source" => 0,
+	),
+
+	// Blogging application
+	"blog" => array(
+		"index" => 0,
+		"drafts" => 1,
+		"publish" => 1,
+		"post" => 1,
+		"edit" => 1,
+		"delete" => 1,
 	),
 
 	// Studies application
@@ -52,7 +64,7 @@ $apps = array(
 	),
 
 	"study" => array (
-		"index" => 1,
+		"index" => 0,
 		"deckadd" => 1,
 		"deck" => 1,
 		"deckrm" => 1,

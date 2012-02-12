@@ -29,16 +29,17 @@ if ($user['id'] == 0) {
 ?>
 			</div>
 			<div class="left">
-				<a href="notes">Notebooks</a>
+				<a href="blog">Home</a>
+				<a href="list-account">People</a>
 			<?php
 if ($user['id'] != 0) {
-	echo '<a href="image">Uploaded images</a><a href="study">My studies</a>';
+	echo '<a href="study">My studies</a>';
+	echo '<a href="image">Uploaded images</a>';
 } else {
+	echo '<a href="study">Studies</a>';
 	if ($user['priv'] >= $apps['image']['upload']) {
 		echo '<a href="upload-image">Upload image</a>';
 	}
-	echo '<a href="deck">Study decks</a>';
-	echo '<a href="list">Study lists</a>';
 }
 ?>
 			</div>

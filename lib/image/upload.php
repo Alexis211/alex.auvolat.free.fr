@@ -4,11 +4,15 @@ $title = "Upload an image";
 
 require("lib/conf/image.php");
 
+/*
 $number = mysql_fetch_assoc(sql("SELECT count(*) AS count FROM images WHERE owner = " . $user['id']));
 assert_error($number['count'] < $quota || $user['priv'] >= $min_priv_for_no_quota || $user['id'] == 0,
 	"You have already exceeded your upload quota.");
+*/
 
-if (isset($_FILES['image'])) {
+if (isset($_FILES['image']) && isset($_POST['name'])) {
+	$name = esca($_POST['name']);
+	if ($name == "") $name = $_FILES['image']['name'];
 	if ($_FILES['image']['error'] != 0) {
 		$error = "Sorry, an error occurred while uploading your file. Try with a smaller one.";
 		require("tpl/image/upload.php");
@@ -24,7 +28,7 @@ if (isset($_FILES['image'])) {
 		$error = "Sorry, we only accept GIF, PNG and JPEG images.";
 		require("tpl/image/upload.php");
 	}
-	sql("INSERT INTO images(owner, extension) VALUES(" . $user['id'] . ", '$type')");
+	sql("INSERT INTO images(owner, extension, name, upl_date) VALUES(" . $user['id'] . ", '$type', '" . escs($name) . "', NOW())");
 	$id = mysql_insert_id();
 	$filen = $savedir . $id . "." . $type;
 	$minin = $savedir . $id . "-min." . $type;

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.7.1
+-- version 3.4.9
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le : Dim 20 Novembre 2011 à 13:31
--- Version du serveur: 5.5.17
--- Version de PHP: 5.3.8
+-- Généré le : Dim 12 Février 2012 à 19:40
+-- Version du serveur: 5.5.20
+-- Version de PHP: 5.3.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -31,6 +31,8 @@ CREATE TABLE IF NOT EXISTS `account` (
   `login` varchar(255) NOT NULL,
   `password` varchar(100) NOT NULL,
   `priv` int(11) NOT NULL DEFAULT '1',
+  `email` varchar(255) NOT NULL,
+  `reg_date` date NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `login` (`login`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
@@ -86,6 +88,37 @@ CREATE TABLE IF NOT EXISTS `batch_study` (
   UNIQUE KEY `batch` (`batch`),
   KEY `user_idx` (`user`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `blog_posts`
+--
+
+CREATE TABLE IF NOT EXISTS `blog_posts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `owner` int(11) NOT NULL,
+  `text` text NOT NULL,
+  `text_html` text NOT NULL,
+  `date` datetime NOT NULL,
+  `draft` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `poster` (`owner`),
+  KEY `draft` (`draft`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `blog_tags`
+--
+
+CREATE TABLE IF NOT EXISTS `blog_tags` (
+  `post` int(11) NOT NULL,
+  `tag` varchar(255) NOT NULL,
+  KEY `post` (`post`,`tag`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -168,9 +201,11 @@ CREATE TABLE IF NOT EXISTS `images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `owner` int(11) NOT NULL,
   `extension` varchar(5) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `upl_date` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `owner` (`owner`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 -- --------------------------------------------------------
 
@@ -221,7 +256,7 @@ CREATE TABLE IF NOT EXISTS `notes` (
   `public` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `owner` (`owner`,`parent`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=34 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -171,6 +171,7 @@ iframe, textarea {
 }
 
 .small_right {
+	clear: right;
 	float: right;
 }
 
@@ -261,4 +262,31 @@ hr {
 .scb7 {
 	border-left: 1px solid #0000FF;
 	border-bottom: 1px solid #0000FF;
+}
+
+
+/* blog */
+
+.blog_post {
+	margin: 4px;
+	margin-top: 16px;
+	border-left: 1px solid #ccc;
+	border-bottom: 1px dashed #ccc;
+	padding: 8px;
+	padding-top: 16px;
+}
+
+.blog_post .inside {
+	/*clear: right;
+	padding-top: 1px;*/
+}
+.blog_post .small_right {
+	margin-left: 100px;
+}
+
+.blog_post h2 {
+	margin: 0px;
+	padding: 0px;
+	margin-left: 16px;
+	font-size: 1.2em;
 }

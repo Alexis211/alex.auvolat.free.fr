@@ -124,6 +124,11 @@ iframe, textarea {
 		width: 300px;
 	}
 
+	select {
+		width: 200px;
+		margin-left: 4px;
+	}
+
 	iframe, textarea {
 	  border: 1px solid #CCC;
 	  width: 98%;

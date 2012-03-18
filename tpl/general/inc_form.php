@@ -13,6 +13,14 @@ foreach($fields as $f) {
 	if (isset($f['type']) && $f['type'] == 'textarea') {
 		echo '<label>' . $f['label'] . '</label><br />';
 		echo '<textarea name="' . $f['name'] . '">' . $f['value'] . '</textarea><br />';
+	} else if (isset($f['type']) && $f['type'] == 'select') {
+		echo '<label>' . $f['label'] . '</label>';
+		echo '<select name="' . $f['name'] . '">';
+		foreach ($f['choices'] as $id => $text) {
+			echo '<option value="' . $id . '"'. ($id == $f['value'] ? ' selected="selected"' : '') .
+				'>' . $text . '</option>';
+		}
+		echo '</select><br />';
 	} else {
 ?>
 <label for="ff_<?php echo $f['name']; ?>"><?php echo $f['label']; ?></label>

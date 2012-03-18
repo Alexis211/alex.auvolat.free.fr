@@ -8,8 +8,12 @@ $apps = array(
 	"image" => array(
 		"index" => 1,
 		"delete" => 1,
-		"rename" => 1,
+		"editinfo" => 1,
 		"upload" => 0,
+		"folder" => 0,
+		"newfld" => 1,
+		"editfld" => 1,
+		"delfld" => 1,
 	),
 
 	// Account application

@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.9
+-- version 3.4.10.1
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le : Dim 12 Février 2012 à 19:40
--- Version du serveur: 5.5.20
+-- Généré le : Dim 18 Mars 2012 à 13:58
+-- Version du serveur: 5.5.21
 -- Version de PHP: 5.3.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -203,9 +203,30 @@ CREATE TABLE IF NOT EXISTS `images` (
   `extension` varchar(5) NOT NULL,
   `name` varchar(255) NOT NULL,
   `upl_date` date NOT NULL,
+  `folder` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  `comment_html` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `owner` (`owner`),
+  KEY `folder` (`folder`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `img_folders`
+--
+
+CREATE TABLE IF NOT EXISTS `img_folders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `owner` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `comment` text NOT NULL,
+  `comment_html` text NOT NULL,
+  `public` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `owner` (`owner`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 

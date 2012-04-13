@@ -1,6 +1,7 @@
 <?php
 
-$title = "What people write";
+require ("lib/conf/blog.php");
+$title = $blog_title;
 
 $filters = array (
 	"order" => array (
@@ -39,10 +40,13 @@ function count_in($fat, $v, $d) {
 
 $q =
 	"SELECT blog_posts.id AS id, blog_posts.title AS title, blog_posts.date AS date, ".
+	"UNIX_TIMESTAMP(blog_posts.date) AS date_ts, ".
 	"DATE_FORMAT(blog_posts.date, '%Y-%m') AS month, ".
-	"blog_posts.text_html AS text_html, GROUP_CONCAT(ba.tag SEPARATOR ',  ') AS tags, ".
+	"blog_posts.text_html AS text_html, GROUP_CONCAT(DISTINCT ba.tag SEPARATOR ',  ') AS tags, ".
+	"COUNT(DISTINCT blog_comments.id) AS comments, ".
 	"account.login AS owner, account.id AS owner_id ".
 	"FROM blog_posts LEFT JOIN account ON blog_posts.owner = account.id ".
+	"LEFT JOIN blog_comments ON blog_comments.post = blog_posts.id ".
 	"LEFT JOIN blog_tags ba ON ba.post = blog_posts.id ".
 	(isset($fvalues['tag']) ? "LEFT JOIN blog_tags bb ON bb.post = blog_posts.id AND bb.tag = '" . escs($fvalues['tag'])."' " : "").
 	"WHERE blog_posts.draft = 0 ".
@@ -69,4 +73,9 @@ $can_post = ($user['priv'] >= $apps['blog']['drafts'] && $user['id'] != 0);
 $can_edit = ($user['priv'] >= $apps['blog']['edit'] && $user['id'] != 0);
 $can_delete = ($user['priv'] >= $apps['blog']['delete'] && $user['id'] != 0);
 
-require("tpl/blog/index.php");
+
+if (isset($fvalues['feed']) && $fvalues['feed'] == "atom") {
+	require("tpl/blog/atom_feed.php");
+} else {
+	require("tpl/blog/index.php");
+}

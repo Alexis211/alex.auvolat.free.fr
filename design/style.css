@@ -295,3 +295,11 @@ hr {
 	margin-left: 16px;
 	font-size: 1.2em;
 }
+
+.blog_post h3 {
+	margin: 0px;
+	padding: 0px;
+	margin-left: 16px;
+	margin-bottom: 10px;
+	font-size: 1.0em;
+}

@@ -17,6 +17,7 @@ foreach ($posts as $post) {
 		echo ' | <a href="edit-blog-' . $post['id'] . '">edit</a>';
 	if ($can_delete && $post['owner_id'] == $user['id'])
 		echo ' | <a href="delete-blog-' . $post['id'] . '">delete</a>';
+	echo ' | <a href="view-blog-' . $post['id'] . '">read & comment (' . $post['comments'] . ')</a>';
 	echo '</div>';
 	echo '<div class="small_right">published ' . $post['date'] . '</div>';
 	if ($post['tags'] != '') {
@@ -49,5 +50,19 @@ foreach ($fa as $kname => $kdata) {
 		echo '</ul>';
 	}
 }
+
+echo "<h1>...</h1>";
+$ze = array();
+foreach ($fvalues as $k => $v) { $ze[] = "$k-$v"; }
+$ze[] = "feed-atom";
+$zd = implode("-", $ze);
+echo '<ul>';
+if (count($fvalues) > 0) {
+	echo '<li><a href="index-blog-' . $zd . '">Atom feed for this selection</a></li>';
+	echo '<li><a href="index-blog-feed-atom">Homepage Atom feed</a></li>';
+} else {
+	echo '<li><a href="index-blog-feed-atom">Atom feed</a></li>';
+}
+echo '</ul>';
 
 require("tpl/general/bottom.php");

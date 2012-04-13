@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1
+-- version 3.5.0
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le : Dim 18 Mars 2012 à 13:58
--- Version du serveur: 5.5.21
+-- Généré le: Ven 13 Avril 2012 à 19:07
+-- Version du serveur: 5.5.22-log
 -- Version de PHP: 5.3.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -88,6 +88,24 @@ CREATE TABLE IF NOT EXISTS `batch_study` (
   UNIQUE KEY `batch` (`batch`),
   KEY `user_idx` (`user`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `blog_comments`
+--
+
+CREATE TABLE IF NOT EXISTS `blog_comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post` int(11) NOT NULL,
+  `owner` int(11) NOT NULL,
+  `text` text NOT NULL,
+  `text_html` text NOT NULL,
+  `date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `post` (`post`),
+  KEY `owner` (`owner`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 

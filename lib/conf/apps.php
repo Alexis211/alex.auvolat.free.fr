@@ -37,11 +37,15 @@ $apps = array(
 	// Blogging application
 	"blog" => array(
 		"index" => 0,
+		"view" => 0,
 		"drafts" => 1,
 		"publish" => 1,
 		"post" => 1,
 		"edit" => 1,
 		"delete" => 1,
+		"comment" => 1,
+		"edcom" => 1,
+		"delcom" => 2,
 	),
 
 	// Studies application

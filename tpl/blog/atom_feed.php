@@ -1,11 +1,12 @@
 <?php
+header("HTTP/1.1 200 OK");
 header("Content-Type: application/xml");
 
 echo '<?xml version="1.0" encoding="utf-8"?>'."\n";
 echo '<feed xmlns="http://www.w3.org/2005/Atom">'."\n";
-echo '<title>' . $blog_title . '</title>'."\n";
+echo '<title>' . htmlspecialchars($blog_title) . '</title>'."\n";
 echo '<id>' . $blog_base_url . "blog". "</id>\n";
-echo '<link href="' . $blog_base_url . "blog". '" rel="self" />' . "\n";
+echo '<link href="' . $blog_base_url . "index.php?p=" . $url . '" rel="self" />' . "\n";
 
 
 function beginning($text, $len = 500) {
@@ -18,7 +19,7 @@ function beginning($text, $len = 500) {
 
 foreach ($posts as $post) {
 	echo "\n<entry>\n";
-	echo '<title>' . $post['title'] . "</title>\n";
+	echo '<title>' . htmlspecialchars($post['title']) . "</title>\n";
 	echo '<published>' . @date("c", $post['date_ts']) . "</published>\n";
 	echo '<id>' . $blog_base_url . "view-blog-" . $post['id'] . "</id>\n";
 	foreach (explode(',  ', $post['tags']) as $tag) {

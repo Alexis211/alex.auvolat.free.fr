@@ -58,10 +58,10 @@ $ze[] = "feed-atom";
 $zd = implode("-", $ze);
 echo '<ul>';
 if (count($fvalues) > 0) {
-	echo '<li><a href="index-blog-' . $zd . '">Atom feed for this selection</a></li>';
-	echo '<li><a href="index-blog-feed-atom">Homepage Atom feed</a></li>';
+	echo '<li><a href="index.php?p=index-blog-' . $zd . '">Atom feed for this selection</a></li>';
+	echo '<li><a href="index.php?p=index-blog-feed-atom">Homepage Atom feed</a></li>';
 } else {
-	echo '<li><a href="index-blog-feed-atom">Atom feed</a></li>';
+	echo '<li><a href="index.php?p=index-blog-feed-atom">Atom feed</a></li>';
 }
 echo '</ul>';
 

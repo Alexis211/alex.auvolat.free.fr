@@ -39,11 +39,7 @@ if (isset($_POST['title']) && isset($_POST['tags']) && isset($_POST['text'])) {
 			}
 			sql("INSERT INTO blog_tags(post, tag) VALUES " . implode(',', $v));
 		}
-		if ($post['draft']) {
-			header("Location: drafts-blog");
-		} else {
-			header("Location: blog");
-		}
+		header("Location: view-blog-$postid");
 		die();
 	}
 }

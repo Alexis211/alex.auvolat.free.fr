@@ -15,7 +15,7 @@ $post = mysql_fetch_assoc(sql(
 	"WHERE blog_posts.id = $postid"
 ));
 
-assert_error($post && $post['draft'] == 0,
+assert_error($post && ($post['draft'] == 0 || $post['owner_id'] == $user['id']),
 	"This post does not exist.");
 
 $comments = array();
@@ -34,6 +34,7 @@ $can_post = ($user['priv'] >= $apps['blog']['drafts'] && $user['id'] != 0);
 $can_edit = ($user['priv'] >= $apps['blog']['edit'] && $user['id'] != 0);
 $can_delete = ($user['priv'] >= $apps['blog']['delete'] && $user['id'] != 0);
 $can_comment = ($user['priv'] >= $apps['blog']['comment'] && $user['id'] != 0);
+$is_draft = ($post['draft'] != 0);
 $can_delcom = ($user['priv'] >= $apps['blog']['delcom'] && $user['id'] != 0);
 
 require("tpl/blog/view.php");

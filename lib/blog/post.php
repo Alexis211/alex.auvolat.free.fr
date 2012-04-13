@@ -28,7 +28,7 @@ if (isset($_POST['title']) && isset($_POST['text'])) {
 			}
 			sql("INSERT INTO blog_tags(post, tag) VALUES " . implode(',', $v));
 		}
-		header("Location: drafts-blog");
+		header("Location: view-blog-$id");
 		die();
 	}
 }

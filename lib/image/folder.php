@@ -14,7 +14,7 @@ $fld = mysql_fetch_assoc(sql(
 assert_error($fld && ($fld['public'] != 0 || $fld['owner'] == $user['id']),
 	"This folder does not exist, or you are not allowed to see it.");
 
-$can_edit = ($user['priv'] >= $apps['image']['editfld'] && $user['id'] = $fld['owner']);
+$can_edit = ($user['priv'] >= $apps['image']['editfld'] && $user['id'] == $fld['owner']);
 $is_owner = ($user['id'] == $fld['owner']);
 
 $filters = array (

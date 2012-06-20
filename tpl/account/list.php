@@ -8,7 +8,11 @@ echo "<table>";
 echo "<tr><th>Username</th><th>Notebook</th><th>Blog</th></tr>";
 foreach($users as $u) {
 	echo '<tr><td>' . $u['name'] . '</td>';
-	echo '<td><a href="user-notes-' . $u['id'] . '">' . $u['nbNotes'] . ' notes</a></td>';
+	if ($u['nbNotes'] > 0) {
+		echo '<td><a href="user-notes-' . $u['id'] . '">' . $u['nbNotes'] . ' notes</a></td>';
+	} else {
+		echo '<td>no notes</td>';
+	}
 	if ($u['nbPosts'] > 0) {
 		echo '<td><a href="index-blog-author-'.$u['id'].'">' . $u['nbPosts'] . ' posts</a></td>';
 	} else {

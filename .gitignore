@@ -1,4 +1,5 @@
 lib/conf/sql.php
+.htaccess
 *.swp
 nohup.out
 _old

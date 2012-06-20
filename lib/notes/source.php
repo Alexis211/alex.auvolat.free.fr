@@ -15,7 +15,7 @@ assert_error($note && ($note['public'] != 0 || $note['owner'] == $user['id']),
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
-<pre><? echo $note['text']; ?></pre>
+<pre><? echo htmlspecialchars($note['text']); ?></pre>
 </body>
 </html>
 <?

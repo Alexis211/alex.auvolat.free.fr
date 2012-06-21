@@ -3,4 +3,4 @@ lib/conf/sql.php
 *.swp
 nohup.out
 _old
-images/*
+files/*

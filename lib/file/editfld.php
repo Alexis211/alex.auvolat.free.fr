@@ -2,12 +2,12 @@
 
 require("lib/markdown.php");
 
-assert_redir(count($args) == 3, 'image');
+assert_redir(count($args) == 3, 'file');
 $fldid = intval($args[2]);
 
 $fld = mysql_fetch_assoc(sql(
 	"SELECT id, name, comment, public, owner ".
-	"FROM img_folders WHERE id = $fldid"
+	"FROM folders WHERE id = $fldid"
 	));
 assert_error($fld && $fld['owner'] == $user['id'],
 	"This folder does not exist, or you are not allowed to edit it.");
@@ -23,10 +23,10 @@ if (isset($_POST['name']) && isset($_POST['comment'])) {
 	if ($fld_name == "") {
 		$error = "You must enter a name for your folder.";
 	} else {
-		sql("UPDATE img_folders SET name = '" . escs($fld_name) . "', comment = '" . escs($fld_comment) .
+		sql("UPDATE folders SET name = '" . escs($fld_name) . "', comment = '" . escs($fld_comment) .
 			"', comment_html = '" . escs($fld_comment_html) . "', public = " . ($fld_public?'1':'0') .
 			" WHERE id = $fldid");
-		header("Location: folder-image-" . $fldid);
+		header("Location: folder-file-" . $fldid);
 		die();
 	}
 	
@@ -34,7 +34,7 @@ if (isset($_POST['name']) && isset($_POST['comment'])) {
 
 $title = "Edit folder";
 $fields = array(
-	array("label" => "Name : ", "name" => "name", "value" => $fld_name),
+	array("label" => "Folder name : ", "name" => "name", "value" => $fld_name),
 	array("label" => "Public ? ", "name" => "public", "type" => "checkbox", "checked" => $fld_public),
 	array("label" => "Comment : ", "name" => "comment", "type" => "textarea", "value" => $fld_comment),
 	);

@@ -13,10 +13,10 @@ if (isset($_POST['name']) && isset($_POST['comment'])) {
 	if ($fld_name == "") {
 		$error = "You must enter a name for your folder.";
 	} else {
-		sql("INSERT INTO img_folders(owner, name, comment, comment_html, public) ".
+		sql("INSERT INTO folders(owner, name, comment, comment_html, public) ".
 			"VALUES(" . $user['id'] . ", '" . escs($fld_name) . "', '" . escs($fld_comment) .
 			"', '" . escs($fld_comment_html) . "', " . ($fld_public ? '1' : '0') . ")");
-		header("Location: folder-image-" . mysql_insert_id());
+		header("Location: folder-file-" . mysql_insert_id());
 		die();
 	}
 }

@@ -5,7 +5,7 @@ $homepage = "blog";
 $apps = array(
 	
 	// Image upload application
-	"image" => array(
+	"file" => array(
 		"index" => 1,
 		"delete" => 1,
 		"editinfo" => 1,

@@ -34,11 +34,11 @@ if ($user['id'] == 0) {
 			<?php
 if ($user['id'] != 0) {
 	echo '<a href="study">My studies</a>';
-	echo '<a href="image">Uploaded images</a>';
+	echo '<a href="file">Uploaded files</a>';
 } else {
 	echo '<a href="study">Studies</a>';
-	if ($user['priv'] >= $apps['image']['upload']) {
-		echo '<a href="upload-image">Upload image</a>';
+	if ($user['priv'] >= $apps['file']['upload']) {
+		echo '<a href="upload-file">Upload file</a>';
 	}
 }
 ?>

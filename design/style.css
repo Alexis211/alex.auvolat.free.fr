@@ -182,6 +182,9 @@ iframe, textarea {
 
 .small_right, .tool_link {
 	font-size: 0.8em;
+}
+
+.small_right a, .tool_link {
 	font-style: italic;
 }
 

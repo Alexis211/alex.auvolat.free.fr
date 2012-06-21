@@ -2,20 +2,20 @@
 
 require("lib/markdown.php");
 
-require("lib/conf/image.php");
+require("lib/conf/file.php");
 
-$title = "Rename an image";
+$title = "Rename a file";
 
 if (count($args) < 3) header("location: index.php");
 $id = intval($args[2]);
 
 $info = mysql_fetch_assoc(sql(
-	"SELECT images.owner AS owner, images.id AS id, images.name AS name, images.comment AS comment,
-		img_folders.id AS folder_id, img_folders.name AS folder_name
-		FROM images LEFT JOIN img_folders ON images.folder = img_folders.id WHERE images.id = $id"
+	"SELECT files.owner AS owner, files.id AS id, files.name AS name, files.comment AS comment,
+		folders.id AS folder_id, folders.name AS folder_name
+		FROM files LEFT JOIN folders ON files.folder = folders.id WHERE files.id = $id"
 ));
 
-assert_error($info["owner"] == $user["id"], "You cannot rename this image.");
+assert_error($info["owner"] == $user["id"], "You cannot rename this file.");
 
 $name = $info['name'];
 $comment = $info['comment'];
@@ -26,23 +26,23 @@ if (isset($_POST['name']) && isset($_POST['comment']) && isset($_POST['folder'])
 	$comment_html = Markdown($comment);
 	$folder = intval($_POST['folder']);
 	if ($name == "") {
-		$error = "You must give a non-empty name to this image. Please.";
+		$error = "You must give a non-empty name to this file. Please.";
 	} else {
-		sql("UPDATE images SET name = '" . escs($name) . "', comment='" . escs($comment). "',
+		sql("UPDATE files SET name = '" . escs($name) . "', comment='" . escs($comment). "',
 				comment_html = '" . escs($comment_html) . "', folder = $folder WHERE id = $id");
-		header("Location: image");
+		header("Location: file");
 		die();
 	}
 }
 
 $folders = array(0 => "[no folder]");
-$r = sql("SELECT id, name FROM img_folders WHERE owner = " . $user['id'] . " ORDER BY name ASC");
+$r = sql("SELECT id, name FROM folders WHERE owner = " . $user['id'] . " ORDER BY name ASC");
 while ($n = mysql_fetch_array($r))
 	$folders[$n['id']] = $n['name'];
 
-$title = "Edit image info : " . $info['name'];
+$title = "Edit file info : " . $info['name'];
 $fields = array(
-	array("label" => "Name : ", "name" => "name", "value" => $name),
+	array("label" => "File name : ", "name" => "name", "value" => $name),
 	array("label" => "Folder : ", "type" => "select", "name" => "folder", "choices" => $folders, "value" => $folder),
 	array("label" => "Comment : ", "name" => "comment", "value" => $comment, "type" => "textarea"),
 );

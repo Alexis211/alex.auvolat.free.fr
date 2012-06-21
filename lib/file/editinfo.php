@@ -30,7 +30,11 @@ if (isset($_POST['name']) && isset($_POST['comment']) && isset($_POST['folder'])
 	} else {
 		sql("UPDATE files SET name = '" . escs($name) . "', comment='" . escs($comment). "',
 				comment_html = '" . escs($comment_html) . "', folder = $folder WHERE id = $id");
-		header("Location: file");
+		if ($folder == 0) {
+			header("Location: file");
+		} else {
+			header("Location: folder-file-$folder");
+		}
 		die();
 	}
 }

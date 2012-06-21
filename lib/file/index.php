@@ -6,7 +6,7 @@ $filters = array (
 	"order" => array (
 			"name" => "title",
 			"upl_date" => "date uploaded",
-			"folder_name" => "folder",
+			//"folder_name" => "folder",
 		),
 	"way" => $ord_ways,
 );
@@ -15,13 +15,13 @@ $fdefaults = array (
 	"way" => "DESC",
 );
 
-$title = "Image upload";
+$title = "File upload";
 
 $files = array();
 $fileq = sql("SELECT files.id AS id, files.name AS name, files.extension AS extension, files.upl_date AS upl_date, ".
 				"files.comment_html AS comment_html, folders.id AS folder_id, folders.name AS folder_name ".
 				" FROM files LEFT JOIN folders ON folders.id = files.folder ".
-				"WHERE files.owner = " . $user['id'] .
+				"WHERE files.folder = 0 AND files.owner = " . $user['id'] .
 	" ORDER BY " . get_filter('order') . " " . get_filter('way'));
 while ($img = mysql_fetch_assoc($fileq)) $files[] = $img;
 

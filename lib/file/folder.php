@@ -33,7 +33,8 @@ $title = $fld["name"];
 
 $files = array();
 $fileq = sql("SELECT files.id AS id, files.name AS name, files.extension AS extension, files.upl_date AS upl_date, ".
-	"files.comment_html AS comment_html FROM files WHERE files.folder = $fldid");
+	"files.comment_html AS comment_html FROM files WHERE files.folder = $fldid ".
+	"ORDER BY " . get_filter('order') . " " . get_filter('way'));
 while ($img = mysql_fetch_assoc($fileq)) $files[] = $img;
 
 $s = sql("SELECT id, name FROM folders WHERE owner = " . $fld['owner'] . ($fld['owner'] == $user['id'] ? '' : " AND public != 0"). " ORDER BY name ASC");

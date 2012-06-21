@@ -7,6 +7,7 @@ require("lib/conf/file.php");
 
 if (isset($_FILES['file']) && isset($_POST['name'])) {
 	$name = esca($_POST['name']);
+	$folder = (isset($_POST['folder']) ? intval($_POST['folder']) : 0);
 	if ($name == "") $name = $_FILES['file']['name'];
 	if ($_FILES['file']['error'] != 0) {
 		$error = "Sorry, an error occurred while uploading your file. Try with a smaller one.";
@@ -15,7 +16,7 @@ if (isset($_FILES['file']) && isset($_POST['name'])) {
 	$origname = strtolower(basename($_FILES['file']['name']));
 	$type = preg_replace("#^.+\.([a-z0-9]+)$#", "$1", $origname);
 
-	sql("INSERT INTO files(owner, extension, name, upl_date) VALUES(" . $user['id'] . ", '$type', '" . escs($name) . "', NOW())");
+	sql("INSERT INTO files(owner, folder, extension, name, upl_date) VALUES(" . $user['id'] . ", $folder, '$type', '" . escs($name) . "', NOW())");
 	$id = mysql_insert_id();
 	$filen = $savedir . $id . "." . $type;
 	if (!copy($_FILES['file']['tmp_name'], $filen)) {

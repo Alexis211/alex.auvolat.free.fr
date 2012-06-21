@@ -2,11 +2,11 @@
 require("tpl/general/top.php");
 
 if (count($files) == 0) {
-	echo '<div class="message">You have uploaded no files yet.</div>';
+	echo '<p>You have no files that are uploaded and not put in a folder.</p>';
 } else {
-	echo '<p>You have uploaded ' . count($files) .' files.</p>';
+	echo '<p>You have ' . count($files) .' files uploaded in no folder. Select a folder to view the files it contains.</p>';
 	echo '<div class="ordering_links">' . filters_html_full() . '</div>';
-	echo '<table><tr><th width="' . ($img_mini_width) . 'px"></th><th>Info</th><th>Date</th></tr>';
+	echo '<table><tr><th width="' . ($img_mini_width) . 'px"></th><th>Info</th><th width="120px">Date</th></tr>';
 	foreach ($files as $fl) { 
 		$min = $baseurl . $fl['id'] . "-min." . $fl['extension'];
 		$flf = $baseurl . $fl['id'] . "." . $fl['extension'];
@@ -26,9 +26,9 @@ if (count($files) == 0) {
 		/*echo '<strong>Miniature:</strong> <a href="' . $min . '">' . $min . '</a><br />';
 		echo '<strong>Image:</strong> <a href="' . $flf . '">' . $flf . '</a><br />'; */
 		echo '</td>';
-		echo '<td>' . $fl['upl_date'] . '<br />';
+		echo '<td>' . $fl['upl_date'] . '';
 		if ($can_delete) echo '<br /><a href="delete-file-' . $fl['id'] . '">delete</a>';
-		if ($can_rename) echo '<br /><a href="editinfo-file-' . $fl['id'] . '">edit info</a>';
+		if ($can_rename) echo ' | <a href="editinfo-file-' . $fl['id'] . '">edit</a>';
 		echo '</td></tr>';
 	} 
 	echo '</table>';

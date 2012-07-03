@@ -5,8 +5,9 @@ $minurl = $baseurl . $id . "-min." . $type;
 $imgurl = $baseurl . $id . "." . $type;
 
 ?>
-	<p>Preview : <a href="<?php echo $minurl; ?>"><?php echo $minurl; ?></a><br />
-	Image : <a href="<?php echo $imgurl; ?>"><?php echo $imgurl; ?></a><br />
+	<p>
+	<?php if (has_mini($type)) { ?>Preview : <a href="<?php echo $minurl; ?>"><?php echo $minurl; ?></a><br /><?php } ?>
+	File : <a href="<?php echo $imgurl; ?>"><?php echo $imgurl; ?></a><br />
 	Markdown code : <code><?php echo (has_mini($type) ? '!' : '') . '[' . $name; ?>](<?php echo $imgurl; ?>)</code></p>
 	<p>
 	<p>

@@ -6,8 +6,8 @@ if ($user['id'] == 0) $message = "You should create an account so that you can t
 $form_message = "If you upload an image, a $img_mini_width"."px preview will be created.";
 $need_file = true;
 $fields = array(
-	array("label" => "Image file : ", "type" => "file", "name" => "file"),
-	array("label" => "Image title (optionnal) : ", "type" => "text", "name" => "name")
+	array("label" => "File : ", "type" => "file", "name" => "file"),
+	array("label" => "Filename (optionnal) : ", "type" => "text", "name" => "name")
 	);
 $validate = "Upload";
 

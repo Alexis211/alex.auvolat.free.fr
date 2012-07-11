@@ -12,7 +12,7 @@ echo '<div class="ordering_links">' . filters_html_full() . '</div>';
 
 foreach ($posts as $post) {
 	echo '<div class="blog_post">';
-	echo '<div class="small_right">Written by ' . $post['owner'];
+	echo '<div class="small_right">by ' . $post['owner'];
 	if ($can_edit && $post['owner_id'] == $user['id'])
 		echo ' | <a href="edit-blog-' . $post['id'] . '">edit</a>';
 	if ($can_delete && $post['owner_id'] == $user['id'])

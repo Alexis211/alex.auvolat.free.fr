@@ -78,7 +78,7 @@ $filters = array(
 	"way" => $ord_ways,
 );
 $fdefaults = array(
-	"what" => "level > 0 AND level < 4",
+	"what" => "level > 0 AND next_review <= CURDATE()",
 	"order" => "level",
 	"way" => "ASC",
 );

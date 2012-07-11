@@ -26,7 +26,7 @@ if (isset($next_card)) {
 echo '<div class="ordering_links">' . filters_html_full() . '</div>';
 
 if (count($study_cards) == 0) {
-	echo '<p>Nothing in this list at the moment.</p>';
+	echo '<br /><div class="message">No cards in this view. Switch to another view to see more stuff.</div>';
 } else {
 	foreach($study_cards as $card) {
 		echo '<div class="study_card scb'.$card['level'].'">';

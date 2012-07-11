@@ -22,7 +22,7 @@ assert_error($info['cardnumber'] <= $info['last_card'] + 1, "You must first add 
 
 $level = intval($args[3]);
 assert_error($level >= 0 && $level <= 7, "That level is invalid.");
-$intervals = array(999999, 1, 3, 5, 8, 16, 24, 999999);
+$intervals = array(999999, 1, 2, 4, 8, 16, 32, 999999);
 
 if ($info['cardnumber'] == $info['last_card'] + 1) {
 	sql("INSERT INTO card_study(deck_study, card, level, next_review) ".

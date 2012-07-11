@@ -24,7 +24,7 @@ global $user, $apps;	//These might be hidden because this page is called from sq
 if ($user['id'] == 0) {
 	echo '<a href="new-account">Register</a><a href="?login">Login</a>';
 } else {
-	echo '<a href="user-notes-' . $user['id'] . '">My notebook</a><a href="?logout">Logout (' . $user['name'] . ')</a>';
+	echo '<a href="?logout">Logout (' . $user['name'] . ')</a>';
 }
 ?>
 			</div>
@@ -33,13 +33,14 @@ if ($user['id'] == 0) {
 				<a href="list-account">People</a>
 			<?php
 if ($user['id'] != 0) {
-	echo '<a href="study">My studies</a>';
-	echo '<a href="file">Uploaded files</a>';
+	echo '<a href="user-notes-' . $user['id'] . '">notes</a>';
+	echo '<a href="file">files</a>';
+	echo '<a href="study">studies</a>';
 } else {
-	echo '<a href="study">Studies</a>';
 	if ($user['priv'] >= $apps['file']['upload']) {
-		echo '<a href="upload-file">Upload file</a>';
+		echo '<a href="upload-file">upload file</a>';
 	}
+	echo '<a href="study">studies</a>';
 }
 ?>
 			</div>

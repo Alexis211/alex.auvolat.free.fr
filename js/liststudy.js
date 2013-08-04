@@ -49,7 +49,7 @@ function show_contents_table() {
 	var html = '<table><tr>';
 	for (var i = 0; i < batch_data.columns.length; i++) {
 		var c = batch_data.columns[i];
-		html += '<th>' + c.name + ' - <a class="tool_link" href="#" onclick="ch(' + i + ')" id="chsl' + i + '">hide</a></th>';
+		html += '<th>' + c + ' - <a class="tool_link" href="#" onclick="ch(' + i + ')" id="chsl' + i + '">hide</a></th>';
 	}
 	html += '<th>win</th><th>fail</th><th>score</th></tr>';
 	for (var i = 0; i < items.length; i++) {
@@ -91,7 +91,7 @@ function show_reviews_table() {
 			var color = '';
 			if (reviews_data[i].score == 100)
 				color = '#00aa00';
-			else if (reviews_data[i].score >= 90)
+			else if (reviews_data[i].score >= 80)
 				color = '#55FF55';
 			else if (reviews_data[i].score >= 50)
 				color = '#FFFF00';

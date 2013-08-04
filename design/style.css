@@ -6,6 +6,7 @@ body {
   padding: 0px;
   margin: 0px;
   width: 400px;
+  font-size: 0.9em;
 }
 
 .menu {
@@ -276,6 +277,28 @@ hr {
 	border-bottom: 1px solid #0000FF;
 }
 
+/* Study lists */
+
+.review_item{
+	text-align: center;
+}
+.review_item div {
+	width: 400px;
+	margin: auto;
+	height: 300px;
+	border: 1px solid #eeeeee;
+	background: #ffffff;
+}
+
+.review_item_prop span {
+	display: inline-block;
+	padding-right: 8px;
+	font-size: 0.8em;
+}
+
+.rtk_kr_q_1, .rtk_kr_a_1, .rtk_kr_q_2, .rtk_kr_a_2 { margin: 0px; padding: 0px; padding-top: 50px; }
+.rtk_kr_q_1, .rtk_kr_a_2 span { font-size: 4em; font-family: "IPAMincho", serif; }
+.rtk_kr_q_2, .rtk_kr_a_1 span { font-size: 1.2em; }
 
 /* blog */
 

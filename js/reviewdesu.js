@@ -26,24 +26,41 @@ function start_review() {
 }
 
 function prepare_questions() {
-	for (var i = 0; i < batch_data.items.length; i++) {
-		for (var j = 0; j < batch_data.columns.length; j++) {
-			if (batch_data.columns[j].question == true) {
+	for (var j = 0; j < batch_data.questions.length; j++) {
+		var tq = [];
+
+		var q = batch_data.questions[j];
+		for (var i = 0; i < batch_data.items.length; i++) {
+			if (q.col) {
 				var answer = '';
 				for (var k = 0; k < batch_data.items[i].length; k++) {
-					if (k != j)
-						answer += '<p style="text-align: center">' + batch_data.items[i][k] + "</p>";
+					answer += '<p class="review_item_prop"><strong>' + batch_data.columns[k] + '</strong>' + batch_data.items[i][k] + "</p>";
 				}
-				questions.push({
-					"question": batch_data.items[i][j],
+				tq.push({
+					"question": '<p class="review_item_q">' + batch_data.items[i][q.col] + '</p>',
 					"answer": answer,
+					"key": batch_data.items[i][0],
+				});
+			} else {
+				var qu = q.q;
+				var an = q.a;
+				for (var k = 0; k < batch_data.items[i].length; k++) {
+					qu = qu.replace('%' + k, batch_data.items[i][k]);
+					an = an.replace('%' + k, batch_data.items[i][k]);
+				}
+				tq.push({
+					"question": qu,
+					"answer": an,
 					"key": batch_data.items[i][0],
 				});
 			}
 		}
+
+		tq.shuffle();
+		// first question asked is the last in array questions, so just put them in reverse order.
+		questions = tq.concat(questions);
 	}
 	total = questions.length;
-	questions.shuffle();
 }
 
 function next_question() {
@@ -66,8 +83,10 @@ function next_question() {
 		question_nb++;
 
 		html = '<h3>Question ' + question_nb + ' of ' + total + '</h3>';
-		html += '<p style="text-align: center; font-size: 1.2em">' + question.question + '</p>';
+		html += '<div class="review_item">';
+		html += '<div>' + question.question + '</div>';
 		html += '<p><button id="flipbtn" onclick="show_answer();">answer</button></p>';
+		html += '</div>';
 		$("core").innerHTML = html;
 		$("flipbtn").focus();
 	}
@@ -75,11 +94,12 @@ function next_question() {
 
 function show_answer() {
 	html = '<h3>Question ' + question_nb + ' of ' + total + '</h3>';
-	html += '<p style="text-align: center; font-size: 1.2em">' + question.question + '</p>';
-	html += question.answer;
+	html += '<div class="review_item">';
+	html += '<div>' + question.answer + '</div>';
 	html += '<p><button taborder="1" onclick="answer_question(-1);">fail</button>';
 	html += '<button taborder="2" id="dunnobtn" onclick="answer_question(0);">dunno</button>';
-	html += '<button taborder="3" onclick="answer_question(1);">win</button></p>';
+	html += '<button taborder="3" id="winbtn" onclick="answer_question(1);">win</button></p>';
+	html += '</div>';
 	$("core").innerHTML = html;
 	$("dunnobtn").focus();
 }

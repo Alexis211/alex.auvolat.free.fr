@@ -1,16 +1,28 @@
 <?php
 
 require("lib/JSON/inc_json.php");
+require("lib/list/list_models.php");
 
 function mk_batch_json($models, $contents) {
-	$data = array("columns" => array(), "items" => array());
+	global $list_models;
 
-	$columns = explode('|', $models);
-	foreach ($columns as $c) {
-		if ($c[0] == '!') {
-			$data['columns'][] = array("question" => false, "name" => substr($c, 1));
-		} else {
-			$data['columns'][] = array("question" => true, "name" => $c);
+	$data = array("columns" => array(), "items" => array(), "questions" => array());
+
+	if ($models[0] == '*') {
+		$model = $list_models[substr($models, 1)];
+
+		$columns = $data['columns'] = $model['columns'];
+		$data['questions'] = $model['questions'];
+	} else {
+		$columns = explode('|', $models);
+
+		foreach ($columns as $k => $c) {
+			if ($c[0] == '!') {
+				$data['columns'][] = substr($c, 1);
+			} else {
+				$data['columns'][] = $c;
+				$data['questions'][] = array('col' => $k);
+			}
 		}
 	}
 

@@ -101,7 +101,7 @@ function show_answer() {
 	html += '<button taborder="3" id="winbtn" onclick="answer_question(1);">win</button></p>';
 	html += '</div>';
 	$("core").innerHTML = html;
-	$("dunnobtn").focus();
+	$("winbtn").focus();
 }
 
 function answer_question(a) {

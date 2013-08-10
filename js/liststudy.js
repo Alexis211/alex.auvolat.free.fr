@@ -66,15 +66,16 @@ function process_items() {
 }
 
 function show_contents_table() {
-	var html = '<table><tr><th style="border: none; background: transparent"></th>';
+	var html = '<table><tr><th class="invisible_td"></th>';
 	for (var i = 0; i < batch_data.columns.length; i++) {
 		var c = batch_data.columns[i];
 		html += '<th>' + c + ' - <a class="tool_link" href="#" onclick="ch(' + i + ')" id="chsl' + i + '">hide</a></th>';
 	}
 	html += '<th>win</th><th>fail</th><th>score</th></tr>';
 	for (var i = 0; i < items.length; i++) {
-		html += '<tr>';
-		html += '<td style="border: none; background: transparent; padding: 0px; padding-top: 8px; font-weight: bold;">' + items[i].marker + '</td>';
+		html += '<tr onclick="edit_note(' + i + ');">';
+		html += '<td class="invisible_td"><span style="font-weight: bold">' + items[i].marker  + '</span>' + 
+			'</td>';
 		for (var j = 0; j < items[i].info.length; j++) {
 			html += '<td><span class="cd' + j + '">' + items[i].info[j] + '</span></td>';
 		}
@@ -84,6 +85,11 @@ function show_contents_table() {
 			(items[i].score == max_score ? '#00aa00' : 
 			(items[i].score >= med_score ? '#55FF55' : 
 			(items[i].score < 0 ? '#FF7777' : '#FFFF00'))) + '">' + items[i].score + '</td></tr>';
+		if (notes[items[i].info[0]]) {
+			var note = notes[items[i].info[0]];
+			html += '<tr><td class="invisible_td"></td><td class="study_note_td" colspan="'
+				 + (items[i].info.length)  + '">' + note + '</td></tr>';
+		}
 	}
 	html += '</table>';
 	html += '<p>Average score : ' + avg_score + '</p>';
@@ -125,3 +131,24 @@ function show_reviews_table() {
 		$("reviews").innerHTML = html;
 	}
 }
+
+
+function edit_note(id) {
+	var idd = items[id].info[0];
+	var note = prompt("Add note for item: ", notes[idd] || '');
+	if (note != null) notes[idd] = note;
+	if (notes[idd] == '') delete notes[idd];
+	show_contents_table();
+
+	new Ajax.Request('index.php?p=brresults-study-' + batchid, {
+		method: 'post',
+		parameters: {
+			notes: Object.toJSON(notes),
+		},
+		onSuccess: function(transport) {
+			// nothing...
+		},
+	});
+}
+
+

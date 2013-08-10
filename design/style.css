@@ -223,6 +223,13 @@ th {
 	text-align: center;
 }
 
+.invisible_td {
+	border: none;
+	background: transparent;
+	padding: 0px;
+	padding-top: 8px;
+}
+
 code {
 	font-size: 1.2em;
 }
@@ -280,15 +287,43 @@ hr {
 
 /* Study lists */
 
+.study_note_td {
+	font-size: 0.8em;
+	background: white;
+	text-align: right;
+	padding: 2px;
+	padding-right: 16px;
+	padding-left: 16px;
+	padding-bottom: 4px;
+}
+
 .review_item{
 	text-align: center;
 }
-.review_item div {
+.review_item .box, .review_item .box2, .review_item .boxn {
 	width: 400px;
 	margin: auto;
-	height: 300px;
 	border: 1px solid #eeeeee;
 	background: #ffffff;
+}
+
+.review_item .box {
+	height: 300px;
+}
+
+.review_item .box2 {
+	height: 220px;
+}
+
+.review_item .boxn {
+	border-top: 0px;
+	height: 74px;
+	font-size: 0.8em;
+	padding-top: 6px;
+}
+
+.review_item .boxn em {
+	color: grey;
 }
 
 .review_item_prop span {

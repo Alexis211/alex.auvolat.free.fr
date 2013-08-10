@@ -2,7 +2,10 @@
 
 $title = $info['uname'] . ':' . $info['lname'] . ' - ' . $info['bname'];
 
-$javascript = "\n\nconst batch_data = " . $info['json_data'] . ";\n\nconst reviews_data =  $reviews;\n\n";
+$javascript = "\nconst batchid = " . $info['batchid'] . "\n\n".
+				"const batch_data = " . $info['json_data'] . ";\n\n".
+				"const reviews_data =  $reviews;\n\n".
+				"var notes = " . $info['notes'] . ";\n\n";
 $js_include = array("js/prototype.js", "js/liststudy.js");
 $onload_js = 'show_batch_table();';
 

@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 4.0.5
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Jeu 21 Juin 2012 à 14:33
--- Version du serveur: 5.5.25-log
--- Version de PHP: 5.4.4
+-- Généré le: Sam 10 Août 2013 à 14:13
+-- Version du serveur: 5.5.32-MariaDB-log
+-- Version de PHP: 5.4.17
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `alex_auvolat`
+-- Base de données: `alex.auvolat`
 --
 
 -- --------------------------------------------------------
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `account` (
   `reg_date` date NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `login` (`login`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -84,6 +84,7 @@ CREATE TABLE IF NOT EXISTS `batch_study` (
   `user` int(11) NOT NULL,
   `batch` int(11) NOT NULL,
   `last_review` int(11) NOT NULL,
+  `notes_json` text NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `batch` (`batch`),
   KEY `user_idx` (`user`)
@@ -105,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `blog_comments` (
   PRIMARY KEY (`id`),
   KEY `post` (`post`),
   KEY `owner` (`owner`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -155,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `cards` (
   UNIQUE KEY `unique_name` (`deck`,`name`),
   UNIQUE KEY `unique_number` (`deck`,`number`),
   KEY `deck_idx` (`deck`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -171,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `card_study` (
   `next_review` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `deck_study` (`deck_study`,`card`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -188,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `decks` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_name` (`owner`,`name`),
   KEY `owner_idx` (`owner`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -207,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `deck_study` (
   UNIQUE KEY `unique_user_deck` (`user`,`deck`),
   KEY `user_idx` (`user`),
   KEY `deck_idx` (`deck`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -227,7 +228,7 @@ CREATE TABLE IF NOT EXISTS `files` (
   PRIMARY KEY (`id`),
   KEY `owner` (`owner`),
   KEY `folder` (`folder`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -244,7 +245,7 @@ CREATE TABLE IF NOT EXISTS `folders` (
   `public` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `owner` (`owner`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -295,7 +296,7 @@ CREATE TABLE IF NOT EXISTS `notes` (
   `public` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `owner` (`owner`,`parent`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

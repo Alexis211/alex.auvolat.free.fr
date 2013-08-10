@@ -19,14 +19,19 @@ if (!($info['studyid'] != 0)) {
 }
 
 if ($info["bsid"] == 0) {
-	sql("INSERT INTO batch_study(user, batch, last_review) VALUES(" . $user['id'] . ", $batchid, 0)");
+	sql("INSERT INTO batch_study(user, batch, last_review, notes_json) ".
+		"VALUES(" . $user['id'] . ", $batchid, 0, '{}')");
 	$info['bsid'] = mysql_insert_id();
+	$info['notes'] = '{}';
 }
 
 if (isset($_POST['results']) && isset($_POST['score'])) {
 	sql("INSERT INTO batch_review(user, batch, results, score, date) ".
 		"VALUES(" . $user['id'] . ", $batchid, '" . escs(esca($_POST['results'])) . "', " . intval($_POST['score']) . ", NOW())");
 	sql("UPDATE batch_study SET last_review = " . mysql_insert_id() . " WHERE id = " . $info['bsid']);
+	echo 'Saved';
+} else if (isset($_POST['notes'])) {
+	sql("UPDATE batch_study SET notes_json = '" . escs(esca($_POST['notes'])) . "' WHERE id = " . $info['bsid']);
 	echo 'Saved';
 } else {
 	echo 'Error';

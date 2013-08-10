@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 10 Août 2013 à 14:13
+-- Généré le: Sam 10 Août 2013 à 15:18
 -- Version du serveur: 5.5.32-MariaDB-log
 -- Version de PHP: 5.4.17
 
@@ -86,8 +86,9 @@ CREATE TABLE IF NOT EXISTS `batch_study` (
   `last_review` int(11) NOT NULL,
   `notes_json` text NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `batch` (`batch`),
-  KEY `user_idx` (`user`)
+  UNIQUE KEY `batch_user` (`user`,`batch`),
+  KEY `user_idx` (`user`),
+  KEY `batch` (`batch`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

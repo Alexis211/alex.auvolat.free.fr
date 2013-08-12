@@ -26,11 +26,16 @@ $fdefaults = array(
 $batches = array();
 $n = sql(
 	"SELECT batches.id AS id, batches.name AS name, ".
-	"batch_study.id AS bs_id, batch_review.date AS lr_date, batch_review.score AS lr_score ".
+	"batch_study.id AS bs_id, ba.date AS lr_date, TO_DAYS(NOW()) - TO_DAYS(ba.date) AS lr_days, ".
+	"ba.score AS lr_score, bc.date AS blr_date, bc.score AS blr_score, ".
+	"COUNT(bb.id) AS num_reviews ".
 	"FROM batches ".
 	"LEFT JOIN batch_study ON batch_study.batch = batches.id AND batch_study.user = " . $user['id'] . " " .
-	"LEFT JOIN batch_review ON batch_review.id = batch_study.last_review ".
+	"LEFT JOIN batch_review ba ON ba.id = batch_study.last_review ".
+	"LEFT JOIN batch_review bb ON bb.batch = batches.id AND bb.user = " . $user['id'] . " ".
+	"LEFT JOIN batch_review bc ON bc.id = batch_study.before_last_review ".
 	"WHERE batches.list = " . $study['listid'] . " " .
+	"GROUP BY batches.id ".
 	"ORDER BY " . get_filter("order") . " " . get_filter("way")
 	);
 while ($b = mysql_fetch_assoc($n)) $batches[] = $b;

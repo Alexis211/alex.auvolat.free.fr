@@ -96,7 +96,8 @@ function show_answer() {
 	html = '<h3>Question ' + question_nb + ' of ' + total + '</h3>';
 	html += '<div class="review_item">';
 	html += '<div class="box2">' + question.answer + '</div>';
-	html += '<div class="boxn" onclick="edit_note();" id="notebox">' + (notes[question.key] || '<em>click to add note...</em>') + '</div>';
+	html += '<div class="boxn" onclick="edit_note();" id="notebox">' +
+		(notes[question.key] || '<em>click to add note...</em>').replace(/\|\|/g, '<br />') + '</div>';
 	html += '<p><button taborder="1" onclick="answer_question(-1);">fail</button>';
 	html += '<button taborder="2" id="dunnobtn" onclick="answer_question(0);">dunno</button>';
 	html += '<button taborder="3" id="winbtn" onclick="answer_question(1);">win</button></p>';
@@ -113,10 +114,10 @@ function answer_question(a) {
 
 function edit_note() {
 	var idd = question.key;
-	var note = prompt("Add note for item:", notes[idd] || '');
+	var note = prompt("Add note for item:\n(you might want to add a long note, so I'm adding this text to make the prompt box bigger)", notes[idd] || '');
 	if (note != null) notes[idd] = note;
 	if (notes[idd] == '') delete notes[idd];
-	$("notebox").innerHTML = (notes[idd] || '<em>click to add note...</em>');
+	$("notebox").innerHTML = (notes[idd] || '<em>click to add note...</em>').replace(/\|\|/g, '<br />');
 
 	new Ajax.Request('index.php?p=brresults-study-' + batchid, {
 		method: 'post',

@@ -18,6 +18,7 @@ global $user, $apps;	//These might be hidden because this page is called from sq
 	</head>
 
 	<body<?php if (isset($onload_js)) echo ' onload="' . $onload_js . '"'; ?>>
+
 		<div class="menu">
 			<div class="right">
 			<?php
@@ -46,6 +47,7 @@ if ($user['id'] != 0) {
 			</div>
 			<div style="clear: both;"></div>
 		</div>
+
 
 		<div class="contents-right">
 

@@ -88,7 +88,7 @@ function show_contents_table() {
 		if (notes[items[i].info[0]]) {
 			var note = notes[items[i].info[0]];
 			html += '<tr><td class="invisible_td"></td><td class="study_note_td" colspan="'
-				 + (items[i].info.length)  + '">' + note + '</td></tr>';
+				 + (items[i].info.length)  + '">' + note.replace(/\|\|/g, '<br/>') + '</td></tr>';
 		}
 	}
 	html += '</table>';
@@ -135,7 +135,7 @@ function show_reviews_table() {
 
 function edit_note(id) {
 	var idd = items[id].info[0];
-	var note = prompt("Add note for item: ", notes[idd] || '');
+	var note = prompt("Add note for item:\n(you might want to add a long note, so I'm adding this text to make the prompt box bigger)", notes[idd] || '');
 	if (note != null) notes[idd] = note;
 	if (notes[idd] == '') delete notes[idd];
 	show_contents_table();

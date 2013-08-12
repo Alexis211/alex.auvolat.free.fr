@@ -305,6 +305,7 @@ hr {
 	margin: auto;
 	border: 1px solid #eeeeee;
 	background: #ffffff;
+	padding: 8px;
 }
 
 .review_item .box {
@@ -317,9 +318,8 @@ hr {
 
 .review_item .boxn {
 	border-top: 0px;
-	height: 74px;
+	height: 64px;
 	font-size: 0.8em;
-	padding-top: 6px;
 }
 
 .review_item .boxn em {
@@ -334,7 +334,7 @@ hr {
 
 .rtk_kr_q_1, .rtk_kr_a_1, .rtk_kr_q_2, .rtk_kr_a_2 { margin: 0px; padding: 0px; padding-top: 50px; }
 .rtk_kr_q_1, .rtk_kr_a_2 span { font-size: 4em; font-family: "IPAMincho", serif; }
-.rtk_kr_q_2, .rtk_kr_a_1 span { font-size: 1.2em; }
+.rtk_kr_q_2, .rtk_kr_a_1 span { font-size: 1.3em; }
 
 /* blog */
 
@@ -369,3 +369,4 @@ hr {
 	margin-bottom: 10px;
 	font-size: 1.0em;
 }
+

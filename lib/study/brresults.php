@@ -26,6 +26,7 @@ if ($info["bsid"] == 0) {
 }
 
 if (isset($_POST['results']) && isset($_POST['score'])) {
+	sql("UPDATE batch_study SET before_last_review = last_review WHERE id = " . $info['bsid']);
 	sql("INSERT INTO batch_review(user, batch, results, score, date) ".
 		"VALUES(" . $user['id'] . ", $batchid, '" . escs(esca($_POST['results'])) . "', " . intval($_POST['score']) . ", NOW())");
 	sql("UPDATE batch_study SET last_review = " . mysql_insert_id() . " WHERE id = " . $info['bsid']);

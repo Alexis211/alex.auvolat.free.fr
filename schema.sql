@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 10 Août 2013 à 15:18
+-- Généré le: Lun 12 Août 2013 à 18:25
 -- Version du serveur: 5.5.32-MariaDB-log
 -- Version de PHP: 5.4.17
 
@@ -85,6 +85,7 @@ CREATE TABLE IF NOT EXISTS `batch_study` (
   `batch` int(11) NOT NULL,
   `last_review` int(11) NOT NULL,
   `notes_json` text NOT NULL,
+  `before_last_review` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `batch_user` (`user`,`batch`),
   KEY `user_idx` (`user`),
@@ -157,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `cards` (
   UNIQUE KEY `unique_name` (`deck`,`name`),
   UNIQUE KEY `unique_number` (`deck`,`number`),
   KEY `deck_idx` (`deck`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -173,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `card_study` (
   `next_review` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `deck_study` (`deck_study`,`card`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -190,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `decks` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_name` (`owner`,`name`),
   KEY `owner_idx` (`owner`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -209,7 +210,7 @@ CREATE TABLE IF NOT EXISTS `deck_study` (
   UNIQUE KEY `unique_user_deck` (`user`,`deck`),
   KEY `user_idx` (`user`),
   KEY `deck_idx` (`deck`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -297,7 +298,7 @@ CREATE TABLE IF NOT EXISTS `notes` (
   `public` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `owner` (`owner`,`parent`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
